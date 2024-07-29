@@ -1,9 +1,18 @@
-import React from 'react'
+import Image from 'next/image';
+import Link from 'next/link';
+import React from 'react';
+
 
 const LeftSidebar = () => {
     return (
         <section className='left_sidebar'>
-            <nav>
+            <nav className='flex flex-col gap-6'>
+                <Link href="/">
+                    <Image
+                        src=""
+                        alt="Home"
+                    />
+                </Link>
 
             </nav>
         </section>
