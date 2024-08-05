@@ -25,11 +25,19 @@ import {
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import { Textarea } from "@/components/ui/textarea";
+import GeneratePodcast from "@/components/GeneratePodcast";
+import GenerateThumbnail from "@/components/GenerateThumbnail";
+
+
 
 const voiceCategories = ["alloy", "shimmer", "nova", "echo", "fable", "onyx"]
 
 const formSchema = z.object({
     podcastTitle: z.string().min(2, {
+        message: "Username must be at least 2 characters.",
+    }),
+    podcastDescription: z.string().min(2, {
         message: "Username must be at least 2 characters.",
     }),
 })
@@ -43,6 +51,7 @@ const CreatePodcast = () => {
         resolver: zodResolver(formSchema),
         defaultValues: {
             podcastTitle: "",
+            podcastDescription: ""
         },
     })
 
@@ -62,7 +71,7 @@ const CreatePodcast = () => {
                             name="podcastTitle"
                             render={({ field }) => (
                                 <FormItem className="flex flex-col cap-2.5">
-                                    <FormLabel className="text-16 font-bold text-white-1">Username</FormLabel>
+                                    <FormLabel className="text-16 font-bold text-white-1">Description</FormLabel>
                                     <FormControl>
                                         <Input className="input-class focus-visible:ring-orange-1" placeholder="Podcast" {...field} />
                                     </FormControl>
@@ -96,6 +105,25 @@ const CreatePodcast = () => {
                                     />)}
                             </Select>
                         </div>
+
+                        <FormField
+                            control={form.control}
+                            name="podcastDescription"
+                            render={({ field }) => (
+                                <FormItem className="flex flex-col cap-2.5">
+                                    <FormLabel className="text-16 font-bold text-white-1">Description</FormLabel>
+                                    <FormControl>
+                                        <Textarea className="input-class focus-visible:ring-orange-1" placeholder="Write a short podcast description" {...field} />
+                                    </FormControl>
+                                    <FormMessage className="text-white-1" />
+                                </FormItem>
+                            )}
+                        />
+                    </div>
+
+                    <div className="flex flex-col pt-10">
+                        <GeneratePodcast />
+                        <GenerateThumbnail />
                     </div>
                 </form>
             </Form>
