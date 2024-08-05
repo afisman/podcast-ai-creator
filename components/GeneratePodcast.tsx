@@ -1,6 +1,14 @@
-import React from 'react'
+import React from 'react';
+import { GeneratePodcastProps } from '../types'
 
-const GeneratePodcast = () => {
+const GeneratePodcast = ({ setAudioStorageID,
+    setAudio,
+    voiceType,
+    audio,
+    voicePrompt,
+    setVoicePrompt,
+    setAudioDuration,
+}: GeneratePodcastProps) => {
     return (
         <div>GeneratePodcast</div>
     )
