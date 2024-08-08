@@ -12,7 +12,6 @@ const openai = new OpenAI({
 export const generateAudioAction = action({
     args: { input: v.string(), voice: v.string() },
     handler: async (_, { voice, input }) => {
-        // do something with `args.a` and `args.b`
         const mp3 = await openai.audio.speech.create({
             model: "tts-1",
             voice: voice as SpeechCreateParams['voice'],
@@ -20,7 +19,6 @@ export const generateAudioAction = action({
         });
         const buffer = await mp3.arrayBuffer();
 
-        // optionally return a value
         return buffer;
     },
 });
